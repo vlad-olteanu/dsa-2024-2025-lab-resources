@@ -82,9 +82,11 @@ typedef struct {
 
 Create a function for each of the following operations:
 \begin{parts}
+    \part Initialise the hashtable \lvlez
     \part Insert a value in the hashtable \lvlez
     \part Search a value in the hashtable \lvlez
     \part Delete a value from the hashtable \lvlmed
+    \part Deallocate the hashtable (free the memory for the nodes and the table) \lvlez
 \end{parts}
 
 \question Implement a hash table that uses collision resolution by open addressing using a data strucure similar to the following example:
@@ -112,30 +114,36 @@ typedef struct {
 \begin{parts}
     \part Implement the following operations by using linear probing (\verb|pos = (h(x) + i) % ht_size|)
     \begin{subparts}
+        \subpart Initialise a table of a given size \lvlez
         \subpart Insert a value in the hashtable \lvlmed
         \subpart Search a value in the hashtable \lvlmed
         \subpart Delete a value from the hashtable \lvlmed
         \subpart Get the hash table's load factor \lvlmed
         \subpart Increase the table size and rehash the table if the load factor is above 0.7 \lvlhard
         \subpart Rehash the table if the number of gravestones is above 30\% of the hashtable's size \lvlhard
+        \subpart Deallocate the table \lvlez
     \end{subparts}
     \part Implement the following operations by using quadratic probing (\verb|pos = (h(x) + i*i) % ht_size|)
     \begin{subparts}
+        \subpart Initialise a table of a given size \lvlez
         \subpart Insert a value in the hashtable \lvlmed
         \subpart Search a value in the hashtable \lvlmed
         \subpart Delete a value from the hashtable \lvlmed
         \subpart Get the hash table's load factor \lvlmed
         \subpart Increase the table size and rehash the table if the load factor is above 0.7 \lvlhard
         \subpart Rehash the table if the number of gravestones is above 30\% of the hashtable's size \lvlhard
+        \subpart Deallocate the table \lvlez
     \end{subparts}
     \part Implement the following operations by using double hashing (\verb|pos = (h(x)+ i*h2(x)) % ht_size|)
     \begin{subparts}
+        \subpart Initialise a table of a given size \lvlez
         \subpart Insert a value in the hashtable \lvlmed
         \subpart Search a value in the hashtable \lvlmed
         \subpart Delete a value from the hashtable \lvlmed
         \subpart Get the hash table's load factor \lvlmed
         \subpart Increase the table size and rehash the table if the load factor is above 0.7 \lvlhard
         \subpart Rehash the table if the number of gravestones is above 30\% of the hashtable's size \lvlhard
+        \subpart Deallocate the table \lvlez
     \end{subparts}
 \end{parts}
 
