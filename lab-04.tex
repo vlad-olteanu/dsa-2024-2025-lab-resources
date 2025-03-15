@@ -62,7 +62,9 @@ backend=biber
     \vspace*{1cm}
 \end{center}
 
-\noindent Implement a hash table that uses collision resolution by chaining using a data strucure similar to the following example:
+
+\begin{questions}
+\question Implement a hash table that uses collision resolution by chaining using a data strucure similar to the following example:
 
 \begin{lstlisting}[language=C]
 typedef struct _NODE{
@@ -75,37 +77,72 @@ typedef struct {
     NODE* v[17];
 } HASH_TABLE;
 \end{lstlisting}
+
 \includesvg{diagrams/htchaining.svg}
 
-\bigskip
-\noindent Implement a function for each of the following operations:
+Create a function for each of the following operations:
+\begin{parts}
+    \part Insert a value in the hashtable \lvlez
+    \part Search a value in the hashtable \lvlez
+    \part Delete a value from the hashtable \lvlmed
+\end{parts}
 
-\begin{questions}
-\question Tree initialisation (create an empty tree) \lvlez
-\question Insert node \lvlez
-\question Search node by key. If the element is found return a pointer to the node, otherwise return 0. \lvlez
-\question Delete node by key \lvlmed
-\question Tree deinitialisation (free the memory allocated for the nodes and the tree) \lvlez
-\question Print the nodes in preorder \lvlez
-\question Print the nodes in inorder \lvlez
-\question Print the nodes in postorder \lvlez
-\question Get the number of nodes in the tree \lvlmed
-\question Get the number of leaf nodes in the tree \lvlmed
-\question Get the depth of a node given the node's key (the number of edges from the root node to the node) \lvlmed
-\question Get the height of a node given the node's key (the largest number of edges from the node to a leaf node) \lvlmed
-\question Find the n-th largest element in the tree \lvlhard
-\question Find the n-th smallest element in the tree \lvlhard
-\question Merge 2 trees \lvlmed
-\question Merge 2 trees without allocating any additional memory \lvlhard
+\question Implement a hash table that uses collision resolution by open addressing using a data strucure similar to the following example:
+
+\begin{lstlisting}[language=C]
+typedef struct HT_ENTRY{
+    int key;
+    char is_set;
+    char is_gravestone;
+} HT_ENTRY;
+
+typedef struct {
+    // a vector of HT_ENTRIES
+    HT_ENTRY *v;
+    // the size of the table should be a prime number 
+    int ht_size;
+    // optional, used to compute the load factor
+    int nr_occupied;
+} HASH_TABLE;
+\end{lstlisting}
+
+\includesvg{diagrams/htoa.svg}
+
+\bigskip
+\begin{parts}
+    \part Implement the following operations by using linear probing (\verb|pos = (h(x) + i) % ht_size|)
+    \begin{subparts}
+        \subpart Insert a value in the hashtable \lvlmed
+        \subpart Search a value in the hashtable \lvlmed
+        \subpart Delete a value from the hashtable \lvlmed
+        \subpart Get the hash table's load factor \lvlmed
+        \subpart Increase the table size and rehash the table if the load factor is above 0.7 \lvlhard
+        \subpart Rehash the table if the number of gravestones is above 30\% of the hashtable's size \lvlhard
+    \end{subparts}
+    \part Implement the following operations by using quadratic probing (\verb|pos = (h(x) + i*i) % ht_size|)
+    \begin{subparts}
+        \subpart Insert a value in the hashtable \lvlmed
+        \subpart Search a value in the hashtable \lvlmed
+        \subpart Delete a value from the hashtable \lvlmed
+        \subpart Get the hash table's load factor \lvlmed
+        \subpart Increase the table size and rehash the table if the load factor is above 0.7 \lvlhard
+        \subpart Rehash the table if the number of gravestones is above 30\% of the hashtable's size \lvlhard
+    \end{subparts}
+    \part Implement the following operations by using double hashing (\verb|pos = (h(x)+ i*h2(x)) % ht_size|)
+    \begin{subparts}
+        \subpart Insert a value in the hashtable \lvlmed
+        \subpart Search a value in the hashtable \lvlmed
+        \subpart Delete a value from the hashtable \lvlmed
+        \subpart Get the hash table's load factor \lvlmed
+        \subpart Increase the table size and rehash the table if the load factor is above 0.7 \lvlhard
+        \subpart Rehash the table if the number of gravestones is above 30\% of the hashtable's size \lvlhard
+    \end{subparts}
+\end{parts}
+
 \end{questions}
 
 \bigskip
-\noindent\textbf{Hard mode}: Solve the lab problems using the containing record trick:
-\begin{lstlisting}[language=C]
-#define CONTAINING_RECORD(address, type, field) (\
-    (type *)((char*)(address) - (size_t)(&((type *)0)->field)))
-\end{lstlisting}
-\textbf{Note:} Leave a comment with the text PB1, PB2, ... PB10 above every function that implements the respective lab task. (upper case text, no space between the text and the problem number)
+\textbf{Note:} Leave a comment with the text PB1, PB2.A.II, ... PB10 above every function that implements the respective lab task. (upper case text, no space between the text and the problem number)
 
 \medskip
 \printbibliography
