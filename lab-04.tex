@@ -1,0 +1,112 @@
+\documentclass{exam}
+\usepackage{amssymb}
+\usepackage{lipsum} 
+\usepackage{graphicx}
+\usepackage[
+backend=biber
+]{biblatex}
+\addbibresource{refs.bib}
+
+\newcommand\labnr{4}
+\newcommand\lab{Lab \labnr\ - Hash Tables}
+
+\newcommand\uni{Technical University of Cluj-Napoca}
+\newcommand\course{Data Structures \& Algorithms}
+
+\newcommand\lvlez{$\bigstar$}
+\newcommand\lvlmed{\lvlez\lvlez}
+\newcommand\lvlhard{\lvlmed\lvlez}
+\newcommand\lvlvhard{\lvlhard\lvlez}
+
+
+\pagestyle{headandfoot}
+\firstpageheader{}{}{}
+\firstpagefootrule
+\firstpageheadrule
+\firstpagefooter{\sc\uni}{}{\sc\course, Lab \labnr}
+\runningheader{\sc\uni}{}{\sc\course, Lab \labnr}
+\runningheadrule
+\runningfootrule
+\runningfooter{}{\thepage}{}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{svg}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+\begin{document}
+\begin{center}
+    \vspace*{0cm}
+    \bfseries\LARGE
+    \lab
+    \vspace*{1cm}
+\end{center}
+
+\noindent Implement a hash table that uses collision resolution by chaining using a data strucure similar to the following example:
+
+\begin{lstlisting}[language=C]
+typedef struct _NODE{
+    int key;
+    struct _NODE* next;
+} NODE;
+
+typedef struct {
+    // the size of the table should be a prime number 
+    NODE* v[17];
+} HASH_TABLE;
+\end{lstlisting}
+\includesvg{diagrams/htchaining.svg}
+
+\bigskip
+\noindent Implement a function for each of the following operations:
+
+\begin{questions}
+\question Tree initialisation (create an empty tree) \lvlez
+\question Insert node \lvlez
+\question Search node by key. If the element is found return a pointer to the node, otherwise return 0. \lvlez
+\question Delete node by key \lvlmed
+\question Tree deinitialisation (free the memory allocated for the nodes and the tree) \lvlez
+\question Print the nodes in preorder \lvlez
+\question Print the nodes in inorder \lvlez
+\question Print the nodes in postorder \lvlez
+\question Get the number of nodes in the tree \lvlmed
+\question Get the number of leaf nodes in the tree \lvlmed
+\question Get the depth of a node given the node's key (the number of edges from the root node to the node) \lvlmed
+\question Get the height of a node given the node's key (the largest number of edges from the node to a leaf node) \lvlmed
+\question Find the n-th largest element in the tree \lvlhard
+\question Find the n-th smallest element in the tree \lvlhard
+\question Merge 2 trees \lvlmed
+\question Merge 2 trees without allocating any additional memory \lvlhard
+\end{questions}
+
+\bigskip
+\noindent\textbf{Hard mode}: Solve the lab problems using the containing record trick:
+\begin{lstlisting}[language=C]
+#define CONTAINING_RECORD(address, type, field) (\
+    (type *)((char*)(address) - (size_t)(&((type *)0)->field)))
+\end{lstlisting}
+\textbf{Note:} Leave a comment with the text PB1, PB2, ... PB10 above every function that implements the respective lab task. (upper case text, no space between the text and the problem number)
+
+\medskip
+\printbibliography
+\end{document}
