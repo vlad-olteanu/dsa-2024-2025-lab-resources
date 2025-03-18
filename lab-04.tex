@@ -72,9 +72,13 @@ typedef struct _NODE{
     struct _NODE* next;
 } NODE;
 
+typedef struct{
+    NODE* first;   
+} SLL;
+
 typedef struct {
     // the size of the table should be a prime number 
-    NODE* v[17];
+    SLL v[17];
 } HASH_TABLE;
 \end{lstlisting}
 
@@ -92,7 +96,7 @@ Create a function for each of the following operations:
 \question Implement a hash table that uses collision resolution by open addressing using a data strucure similar to the following example:
 
 \begin{lstlisting}[language=C]
-typedef struct HT_ENTRY{
+typedef struct {
     int key;
     char is_set;
     char is_gravestone;
