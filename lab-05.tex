@@ -7,8 +7,8 @@ backend=biber
 ]{biblatex}
 \addbibresource{refs.bib}
 
-\newcommand\labnr{4}
-\newcommand\lab{Lab \labnr\ - Hash Tables}
+\newcommand\labnr{5}
+\newcommand\lab{Lab \labnr\ - Graph Representations, Depth First Search, Breadth First Search}
 
 \newcommand\uni{Technical University of Cluj-Napoca}
 \newcommand\course{Data Structures \& Algorithms}
@@ -62,95 +62,70 @@ backend=biber
     \vspace*{1cm}
 \end{center}
 
+\begin{center}
+\includegraphics[width=0.35\textwidth]{diagrams/digraph0.drawio.png}
+\end{center}
 
 \begin{questions}
-\question Implement a hash table that uses collision resolution by chaining using a data strucure similar to the following example:
+\question Implement the following graph operations using an adjacency matrix:
+
+\begin{parts}
+    \part Initialise a graph with n nodes.\lvlez
+    \part Insert an edge in the graph \lvlez
+    \part Delete an edge from the graph \lvlez
+    \part Print the graph \lvlmed
+    \part Deallocate the graph (free the memory for the nodes and the adjacency matrix) \lvlez
+    \part Depth first search \lvlmed
+    \part Breadth first search \lvlmed
+\end{parts}
+
+\question Implement the following graph operations using an edge list:
+
+\begin{parts}
+    \part Initialise a graph with n nodes.\lvlez
+    \part Insert an edge in the graph \lvlmed
+    \part Delete an edge from the graph \lvlmed
+    \part Print the graph \lvlmed
+    \part Deallocate the graph (free the memory for the nodes and the edge list) \lvlmed
+    \part Depth first search \lvlmed
+    \part Breadth first search \lvlmed
+\end{parts}
+
+\newpage
+\question Implement the following graph operations using a data strucure similar to the following example:
 
 \begin{lstlisting}[language=C]
-typedef struct _NODE{
+
+typedef struct _NEIGHBOR_NODE{
     int key;
-    struct _NODE* next;
-} NODE;
+    struct _NEIGHBOR_NODE* next;
+}NEIGHBOR_NODE;
+
+typedef struct _GRAPH_NODE{
+    int key;
+    NEIGHBOR_NODE* first_neighbor;
+    struct _GRAPH_NODE* next;
+} GRAPH_NODE;
 
 typedef struct{
-    NODE* first;   
-} SLL;
-
-typedef struct {
-    // the size of the table should be a prime number 
-    SLL v[17];
-} HASH_TABLE;
+    GRAPH_NODE* first_node;    
+}GRAPH;
 \end{lstlisting}
 
-\includesvg{diagrams/digraph0.drawio.svg}
 
-\includesvg{diagrams/digraph1.drawio.svg}
+\includegraphics[width=\textwidth]{diagrams/digraph1.drawio.png}
 
 Create a function for each of the following operations:
 \begin{parts}
-    \part Initialise the hashtable \lvlez
-    \part Insert a value in the hashtable \lvlez
-    \part Search a value in the hashtable \lvlez
-    \part Delete a value from the hashtable \lvlmed
-    \part Deallocate the hashtable (free the memory for the nodes and the table) \lvlez
-\end{parts}
-
-\question Implement a hash table that uses collision resolution by open addressing using a data strucure similar to the following example:
-
-\begin{lstlisting}[language=C]
-typedef struct {
-    int key;
-    char is_set;
-    char is_gravestone;
-} HT_ENTRY;
-
-typedef struct {
-    // a vector of HT_ENTRIES
-    HT_ENTRY *v;
-    // the size of the table should be a prime number 
-    int ht_size;
-    // optional, used to compute the load factor
-    int nr_occupied;
-} HASH_TABLE;
-\end{lstlisting}
-
-\includesvg{diagrams/htoa.svg}
-
-\bigskip
-\begin{parts}
-    \part Implement the following operations by using linear probing (\verb|pos = (h(x) + i) % ht_size|)
-    \begin{subparts}
-        \subpart Initialise a table of a given size \lvlez
-        \subpart Insert a value in the hashtable \lvlmed
-        \subpart Search a value in the hashtable \lvlmed
-        \subpart Delete a value from the hashtable \lvlmed
-        \subpart Get the hash table's load factor \lvlmed
-        \subpart Increase the table size and rehash the table if the load factor is above 0.7 \lvlhard
-        \subpart Rehash the table if the number of gravestones is above 30\% of the hashtable's size \lvlhard
-        \subpart Deallocate the table \lvlez
-    \end{subparts}
-    \part Implement the following operations by using quadratic probing (\verb|pos = (h(x) + i*i) % ht_size|)
-    \begin{subparts}
-        \subpart Initialise a table of a given size \lvlez
-        \subpart Insert a value in the hashtable \lvlmed
-        \subpart Search a value in the hashtable \lvlmed
-        \subpart Delete a value from the hashtable \lvlmed
-        \subpart Get the hash table's load factor \lvlmed
-        \subpart Increase the table size and rehash the table if the load factor is above 0.7 \lvlhard
-        \subpart Rehash the table if the number of gravestones is above 30\% of the hashtable's size \lvlhard
-        \subpart Deallocate the table \lvlez
-    \end{subparts}
-    \part Implement the following operations by using double hashing (\verb|pos = (h(x)+ i*h2(x)) % ht_size|)
-    \begin{subparts}
-        \subpart Initialise a table of a given size \lvlez
-        \subpart Insert a value in the hashtable \lvlmed
-        \subpart Search a value in the hashtable \lvlmed
-        \subpart Delete a value from the hashtable \lvlmed
-        \subpart Get the hash table's load factor \lvlmed
-        \subpart Increase the table size and rehash the table if the load factor is above 0.7 \lvlhard
-        \subpart Rehash the table if the number of gravestones is above 30\% of the hashtable's size \lvlhard
-        \subpart Deallocate the table \lvlez
-    \end{subparts}
+    \part Initialise the graph \lvlez
+    \part Insert a node in the graph \lvlmed
+    \part Delete a node from the graph \lvlmed
+    \part Print the graph \lvlmed
+    \part Insert an edge in the graph \lvlmed
+    \part Delete an edge from the graph \lvlmed
+    \part Deallocate the graph (free the memory for the nodes and the graph) \lvlmed
+    \part Depth first search \lvlhard
+    \part Breadth first search \lvlhard
 \end{parts}
 
 \end{questions}
