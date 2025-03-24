@@ -1,0 +1,163 @@
+\documentclass{exam}
+\usepackage{amssymb}
+\usepackage{lipsum} 
+\usepackage{graphicx}
+\usepackage[
+backend=biber
+]{biblatex}
+\addbibresource{refs.bib}
+
+\newcommand\labnr{4}
+\newcommand\lab{Lab \labnr\ - Hash Tables}
+
+\newcommand\uni{Technical University of Cluj-Napoca}
+\newcommand\course{Data Structures \& Algorithms}
+
+\newcommand\lvlez{$\bigstar$}
+\newcommand\lvlmed{\lvlez\lvlez}
+\newcommand\lvlhard{\lvlmed\lvlez}
+\newcommand\lvlvhard{\lvlhard\lvlez}
+
+
+\pagestyle{headandfoot}
+\firstpageheader{}{}{}
+\firstpagefootrule
+\firstpageheadrule
+\firstpagefooter{\sc\uni}{}{\sc\course, Lab \labnr}
+\runningheader{\sc\uni}{}{\sc\course, Lab \labnr}
+\runningheadrule
+\runningfootrule
+\runningfooter{}{\thepage}{}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{svg}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+\begin{document}
+\begin{center}
+    \vspace*{0cm}
+    \bfseries\LARGE
+    \lab
+    \vspace*{1cm}
+\end{center}
+
+
+\begin{questions}
+\question Implement a hash table that uses collision resolution by chaining using a data strucure similar to the following example:
+
+\begin{lstlisting}[language=C]
+typedef struct _NODE{
+    int key;
+    struct _NODE* next;
+} NODE;
+
+typedef struct{
+    NODE* first;   
+} SLL;
+
+typedef struct {
+    // the size of the table should be a prime number 
+    SLL v[17];
+} HASH_TABLE;
+\end{lstlisting}
+
+\includesvg{diagrams/digraph0.drawio.svg}
+
+\includesvg{diagrams/digraph1.drawio.svg}
+
+Create a function for each of the following operations:
+\begin{parts}
+    \part Initialise the hashtable \lvlez
+    \part Insert a value in the hashtable \lvlez
+    \part Search a value in the hashtable \lvlez
+    \part Delete a value from the hashtable \lvlmed
+    \part Deallocate the hashtable (free the memory for the nodes and the table) \lvlez
+\end{parts}
+
+\question Implement a hash table that uses collision resolution by open addressing using a data strucure similar to the following example:
+
+\begin{lstlisting}[language=C]
+typedef struct {
+    int key;
+    char is_set;
+    char is_gravestone;
+} HT_ENTRY;
+
+typedef struct {
+    // a vector of HT_ENTRIES
+    HT_ENTRY *v;
+    // the size of the table should be a prime number 
+    int ht_size;
+    // optional, used to compute the load factor
+    int nr_occupied;
+} HASH_TABLE;
+\end{lstlisting}
+
+\includesvg{diagrams/htoa.svg}
+
+\bigskip
+\begin{parts}
+    \part Implement the following operations by using linear probing (\verb|pos = (h(x) + i) % ht_size|)
+    \begin{subparts}
+        \subpart Initialise a table of a given size \lvlez
+        \subpart Insert a value in the hashtable \lvlmed
+        \subpart Search a value in the hashtable \lvlmed
+        \subpart Delete a value from the hashtable \lvlmed
+        \subpart Get the hash table's load factor \lvlmed
+        \subpart Increase the table size and rehash the table if the load factor is above 0.7 \lvlhard
+        \subpart Rehash the table if the number of gravestones is above 30\% of the hashtable's size \lvlhard
+        \subpart Deallocate the table \lvlez
+    \end{subparts}
+    \part Implement the following operations by using quadratic probing (\verb|pos = (h(x) + i*i) % ht_size|)
+    \begin{subparts}
+        \subpart Initialise a table of a given size \lvlez
+        \subpart Insert a value in the hashtable \lvlmed
+        \subpart Search a value in the hashtable \lvlmed
+        \subpart Delete a value from the hashtable \lvlmed
+        \subpart Get the hash table's load factor \lvlmed
+        \subpart Increase the table size and rehash the table if the load factor is above 0.7 \lvlhard
+        \subpart Rehash the table if the number of gravestones is above 30\% of the hashtable's size \lvlhard
+        \subpart Deallocate the table \lvlez
+    \end{subparts}
+    \part Implement the following operations by using double hashing (\verb|pos = (h(x)+ i*h2(x)) % ht_size|)
+    \begin{subparts}
+        \subpart Initialise a table of a given size \lvlez
+        \subpart Insert a value in the hashtable \lvlmed
+        \subpart Search a value in the hashtable \lvlmed
+        \subpart Delete a value from the hashtable \lvlmed
+        \subpart Get the hash table's load factor \lvlmed
+        \subpart Increase the table size and rehash the table if the load factor is above 0.7 \lvlhard
+        \subpart Rehash the table if the number of gravestones is above 30\% of the hashtable's size \lvlhard
+        \subpart Deallocate the table \lvlez
+    \end{subparts}
+\end{parts}
+
+\end{questions}
+
+\bigskip
+\textbf{Note:} Leave a comment with the text PB1, PB2.A.II, ... PB10 above every function that implements the respective lab task. (upper case text, no space between the text and the problem number)
+
+\medskip
+\printbibliography
+\end{document}
