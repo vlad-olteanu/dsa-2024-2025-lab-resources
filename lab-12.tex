@@ -1,0 +1,95 @@
+\documentclass{exam}
+\usepackage{amssymb}
+\usepackage{lipsum} 
+\usepackage{graphicx}
+\usepackage[
+backend=biber
+]{biblatex}
+\addbibresource{refs.bib}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=black,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+
+\newcommand\labnr{12}
+\newcommand\lab{Lab \labnr\ - Dynamic Programming}
+
+\newcommand\uni{Technical University of Cluj-Napoca}
+\newcommand\course{Data Structures \& Algorithms}
+
+\newcommand\lvlez{$\bigstar$}
+\newcommand\lvlmed{\lvlez\lvlez}
+\newcommand\lvlhard{\lvlmed\lvlez}
+\newcommand\lvlvhard{\lvlhard\lvlez}
+
+
+\pagestyle{headandfoot}
+\firstpageheader{}{}{}
+\firstpagefootrule
+\firstpageheadrule
+\firstpagefooter{\sc\uni}{}{\sc\course, Lab \labnr}
+\runningheader{\sc\uni}{}{\sc\course, Lab \labnr}
+\runningheadrule
+\runningfootrule
+\runningfooter{}{\thepage}{}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{svg}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+\begin{document}
+\begin{center}
+    \vspace*{0cm}
+    \bfseries\LARGE
+    \lab
+    \vspace*{1cm}
+\end{center}
+
+\noindent Solve the following problems using dyamic programming:
+\begin{questions}
+\item Compute the n-th number of the Fibonacci sequence. \lvlez
+\item Given a rod of length \verb|n| and an array \verb|price|, where \verb|price[i]| denotes the value of a piece of length i, determine the maximum value obtainable by cutting up the rod and selling the pieces. \lvlmed
+\item  Given an n$\times$n matrix of positive or negative integers find the path from the top left corner (0, 0) to the bottom right corner (n-1, n-1) that has the maximum sum. You can only move down or right. \lvlmed
+\item A man wants to climb a stair that consists of n steps.
+    At each step he can go up 1, 2 or 3 steps.
+    Every m-th step of the stair is missing (the man cannot step on it). 
+    Find out in how many ways the stair can be climbed for any $n$ or $m$.
+    \lvlmed
+\item  Given a matrix of $n \times n$ numbers find the number of paths from any position on the first row to any position on the last row where the numbers along the path are strictly increasing. You can only move one position down, one down and one right or one down and one left. \lvlmed
+
+\item Given $n$ items, each with value $v_i$ and weight $w_i$, and a knapsack with capacity $W$, select items to maximize the total value without exceeding the capacity. \lvlhard
+    
+\end{questions}
+
+ \bigskip
+\textbf{Note:} Leave a comment with the text PB1, PB2.A.II, ... PB10 above every function that implements the respective lab task. (upper case text, no space between the text and the problem number)
+
+\medskip
+\printbibliography
+\end{document}
